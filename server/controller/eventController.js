@@ -52,37 +52,3 @@ export const getEvents = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
-export const exportEventsCSV = async (req, res) => {
-  try {
-    const events = await Event.find();
-
-    if (!events.length) {
-      return res
-        .status(404)
-        .json({ success: false, message: "No events found" });
-    }
-
-    const fields = [
-      "eventTitle",
-      "description",
-      "eventDate",
-      "eventTime",
-      "location",
-      "organizerEmail",
-      "organizerContact",
-      "eventType",
-      "banner",
-      "createdAt",
-    ];
-
-    const json2csvParser = new Parser({ fields });
-    const csv = json2csvParser.parse(events);
-
-    res.header("Content-Type", "text/csv");
-    res.attachment("events.csv");
-    return res.send(csv);
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
