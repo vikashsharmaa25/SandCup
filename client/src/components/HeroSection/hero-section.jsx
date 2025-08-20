@@ -6,14 +6,15 @@ export function HeroSection({ setIsModalOpen }) {
   return (
     <section
       id="home"
-      className="relative py-20 lg:py-32 bg-gradient-to-br from-background to-muted"
+      className="relative py-20 lg:py-32 bg-gradient-to-br from-background to-muted hero"
     >
       <div className="container px-4 mx-auto">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 font-serif">
-            Seamlessly Manage Your <span className="text-primary">Events</span>
+        <div className="max-w-5xl mx-auto text-center heroIndex">
+          <h1 className="font-bold text-foreground font-serif">
+            Seamlessly Manage Your <span className="text-primary">Events</span>{" "}
+            and Create Lasting Experiences
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="md:text-lg text-sm text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             The comprehensive platform for event organizers, conference
             planners, and workshop hosts. Create, manage, and track your events
             with professional-grade tools.

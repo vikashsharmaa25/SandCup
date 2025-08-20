@@ -34,15 +34,16 @@ function App() {
   return (
     <div>
       <Header setIsModalOpen={setIsModalOpen} />
-      <main className="max-w-[1200px] mx-auto">
-        <HeroSection setIsModalOpen={setIsModalOpen} />
+
+      <HeroSection setIsModalOpen={setIsModalOpen} />
+      <section id="upcoming">
         <EventList
           events={events}
           loading={loadingEvents}
           error={eventsError}
           refreshEvents={fetchEvents}
         />
-      </main>
+      </section>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <EventFormContainer
@@ -52,7 +53,9 @@ function App() {
           }}
         />
       </Modal>
-      <Footer />
+      <section id="footer">
+        <Footer />
+      </section>
     </div>
   );
 }

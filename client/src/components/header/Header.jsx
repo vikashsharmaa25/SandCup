@@ -10,8 +10,8 @@ export function Header({ setIsModalOpen }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-primary/95 backdrop-blur supports-[backdrop-filter]:bg-primary/60">
-      <div className="flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b bg-primary/95 backdrop-blur supports-[backdrop-filter]:bg-primary/60 ">
+      <div className="flex h-16 items-center justify-between px-4 max-w-[1400px] mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Calendar className="sm:h-8 h-5 sm:w-8 w-5 text-primary-foreground" />
@@ -33,14 +33,14 @@ export function Header({ setIsModalOpen }) {
           </a>
 
           <a
-            href="#pricing"
+            href="#upcoming"
             className="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
           >
             Upcoming Event
           </a>
 
           <a
-            href="#features"
+            href="#footer"
             className="text-primary-foreground hover:text-primary-foreground/80 transition-colors"
           >
             Footer

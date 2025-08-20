@@ -138,3 +138,16 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
 }
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'><text x='0' y='25' fill='%23E6E8EE' font-size='60px'>.</text></svg>")
+    0 0 / 35px 35px #f1f4f9;
+}

@@ -11,7 +11,7 @@ const SubmitButton = ({ isValid, isSubmitting, onClick }) => {
       onClick={onClick}
       disabled={!isValid || isSubmitting}
       className={`
-        w-full py-3 px-4 rounded-lg font-medium transition-all duration-200
+        w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 cursor-pointer
         ${
           isValid && !isSubmitting
             ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transform hover:-translate-y-0.5"

@@ -13,6 +13,7 @@ import { formatDate, formatTime } from "../../utils/formatDateTime";
 import LottiePlayer from "../LottiePlayer";
 import placeholderAnimation from "../../assets/NodataFound.json";
 import { toast } from "react-toastify";
+import axiosInstance from "../../apis/Axiosinstance";
 
 export function EventList({ events, loading, error, refreshEvents }) {
   const getEventTypeColor = (type) => {
@@ -30,59 +31,36 @@ export function EventList({ events, loading, error, refreshEvents }) {
     }
   };
 
-  const exportToCSV = () => {
-    if (!events || events.length === 0) {
-      toast.error("data not found");
-      return;
+  const exportToCSV = async () => {
+    try {
+      const response = await axiosInstance.get("/events/download/csv", {
+        responseType: "blob", // tells axios to expect binary data
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "events.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("CSV downloaded successfully");
+    } catch (error) {
+      console.error("CSV download error:", error);
+      toast.error("Failed to download CSV");
     }
-
-    const headers = [
-      "Event Title",
-      "Description",
-      "Date",
-      "Time",
-      "Location",
-      "Organizer Email",
-      "Contact",
-      "Type",
-      "Created At",
-    ];
-
-    const csvContent = [
-      headers.join(","),
-      ...events.map((event) =>
-        [
-          `"${event.eventTitle}"`,
-          `"${event.description}"`,
-          event.eventDate,
-          event.eventTime,
-          `"${event.location}"`,
-          event.organizerEmail,
-          event.organizerContact,
-          event.eventType,
-          event.createdAt,
-        ].join(",")
-      ),
-    ].join("\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "events.csv";
-    a.click();
-    window.URL.revokeObjectURL(url);
   };
 
   return (
-    <section className="pb-20 bg-muted/30">
+    <section className="py-20 bg-muted/30 max-w-[1400px] mx-auto">
       <div className="container px-4 mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-serif">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4 font-serif">
               Upcoming Events
             </h2>
-            <p className="text-xl text-muted-foreground line-clamp-1">
+            <p className="md:text-xl text-sm text-muted-foreground md:line-clamp-1">
               Discover and join amazing events created by our community
             </p>
           </div>

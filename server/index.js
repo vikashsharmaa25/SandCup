@@ -9,6 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// https://sand-cup-client.vercel.app
+
 app.use(
   cors({
     origin: "https://sand-cup-client.vercel.app",
