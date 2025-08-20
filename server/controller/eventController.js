@@ -1,4 +1,3 @@
-import { Parser } from "json2csv";
 import Event from "../model/Event.js";
 
 export const createEvent = async (req, res) => {
