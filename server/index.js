@@ -1,6 +1,6 @@
 import express from "express";
-dotenv.config();
 import dotenv from "dotenv";
+dotenv.config();
 import { connection } from "./config/database.js";
 import router from "./routes/eventRoutes.js";
 import cors from "cors";
@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
